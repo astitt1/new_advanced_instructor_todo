@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import TodoList from "./components/todolist/TodoList";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -94,51 +95,20 @@ function App() {
     const completedTDsCopy = [...completedTodos, updatedTodo];
     setCompletedTodos(completedTDsCopy);
     todosCopy.splice(index, 1);
-    setTodos(todosCopy
-    )
+    setTodos(todosCopy)
   };
 
   return (
     <>
-      Add Todo:
-      <input
-        type='text'
-        value={newTodo.title}
-        onChange={(e) => {
-          setNewTodo({ ...newTodo, title: e.target.value });
-        }}
-        onKeyDown={(e) => {
-          e.key === "Enter" && createTodo();
-        }}
-      />
-      <h3>Todos</h3>
-      {todos ? (
-        todos.map((todo) => {
-          return (
-            <div key={todo._id}>
-              {todo.title}
-              <button onClick={() => moveToCompleted(todo._id)}>
-                complete
-              </button>
-            </div>
-          );
-        })
-      ) : (
-        <div>loading</div>
-      )}
-      <h3>Completed Todos</h3>
-      {completedTodos ? (
-        completedTodos.map((todo) => {
-          return (
-            <div key={todo._id}>
-              {todo.title}
-              <button onClick={() => deleteTodo(todo._id)}>delete</button>
-            </div>
-          );
-        })
-      ) : (
-        <div>loading</div>
-      )}
+  <TodoList 
+      newTodo={newTodo}
+      setNewTodo={setNewTodo}
+      createTodo={createTodo}
+      todos={todos}
+      moveToCompleted={moveToCompleted}
+      completedTodos={completedTodos}
+      deleteTodo={deleteTodo}
+    />
     </>
   );
 }
