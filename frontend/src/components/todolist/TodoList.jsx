@@ -1,5 +1,6 @@
 import React from "react";
 import Todo from "../todo/Todo";
+import styles from './TodoList.module.scss'
 
 function TodoList({
   newTodo,
@@ -11,9 +12,10 @@ function TodoList({
   moveToCompleted,
 }) {
   return (
-    <div>
+    <div className={styles.todolist}>
       Add New Todo:
       <input
+      className={styles.input}
         type='text'
         value={newTodo.title}
         onChange={(e) => {
